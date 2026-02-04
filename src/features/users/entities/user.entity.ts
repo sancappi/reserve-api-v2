@@ -7,24 +7,23 @@ export enum UserProfile {
     MANAGER = "manager"
 }
 
-@Entity("user")
+@Entity("user_account")
 export class User {
-    @PrimaryGeneratedColumn()
-    id: number;
+  @PrimaryGeneratedColumn()
+  id: number;
 
-    @Column()
-    name: string;
+  @Column()
+  name: string;
 
-    @Column({unique: true})
-    email: string;
+  @Column({ unique: true })
+  email: string;
 
-    @Column({select: false})
-    password: string;
+  @Column({ select: false })
+  password: string;
 
-    @Column({type: "enum", enum: UserProfile})
-    profile: UserProfile;
+  @Column({ type: "enum", enum: UserProfile })
+  profile: UserProfile;
 
-    @OneToMany(() => Reservation, reservation =>
-        reservation.user)
-    reservations: Reservation[];
+  @OneToMany(() => Reservation, reservation => reservation.user)
+  reservations: Reservation[];
 }

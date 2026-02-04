@@ -4,34 +4,33 @@ import {Entity, Column, PrimaryGeneratedColumn,
 
 @Entity("environment")
 export class Environment {
-    @PrimaryGeneratedColumn()
-    id: number;
+  @PrimaryGeneratedColumn()
+  id: number;
 
-    @Column()
-    capacity: number;
+  @Column()
+  capacity: number;
 
-    @Column()
-    photo: string;
+  @Column()
+  photo: string;
 
-    @Column()
-    resources: string;
+  @Column("text", {array: true})
+  resources: string[];
 
-    @Column()
-    observation: string;
+  @Column()
+  observation: string;
 
-    @Column()
-    opening: string;
+  @Column({ type: "time" })
+  opening: string;
 
-    @Column()
-    closing: string;
+  @Column({ type: "time" })
+  closing: string;
 
-    @Column()
-    tittle: string;
+  @Column()
+  title: string;
 
-    @Column()
-    notification: number
+  @Column()
+  notification: number;
 
-    @OneToMany(() => Reservation, reservation => 
-        reservation.environment)
-    reservations: Reservation[];
+  @OneToMany(() => Reservation, reservation => reservation.environment)
+  reservations: Reservation[];
 }
